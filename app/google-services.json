@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "673842134023",
+    "project_id": "incomefunction",
+    "storage_bucket": "incomefunction.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:673842134023:android:3103c840ad4caf63d47ea2",
+        "android_client_info": {
+          "package_name": "com.example.incomefunction"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "673842134023-8g2tn16hl0kt33sf104nr6f3vmocjcnm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCd1DWcXjDvfGEtD9a-NrnngJBUCTZFc0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "673842134023-8g2tn16hl0kt33sf104nr6f3vmocjcnm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
