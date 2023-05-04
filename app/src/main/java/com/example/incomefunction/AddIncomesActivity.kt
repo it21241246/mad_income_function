@@ -76,25 +76,31 @@ class AddIncomesActivity : AppCompatActivity() {
             val incomeAmount = incomeAmountEditText.text.toString().toDouble()
             val date = calendar.time
 
+
+            val incomesCollectionRef = db.collection("incomes")
+            val IncomeDocRef = incomesCollectionRef.document()
+            val IncomeId = IncomeDocRef.id
+
             // Create a new income document with the data and date
             val income = hashMapOf(
+                "id" to IncomeId,
                 "name" to incomeName,
                 "amount" to incomeAmount,
                 "date" to date
             )
 
             // Add the income to the 'incomes' collection in Firestore
-            db.collection("incomes")
-                .add(income)
-                .addOnSuccessListener { documentReference ->
+            IncomeDocRef.set(income)
+                .addOnSuccessListener {
                     // Show a success message and finish the activity
-                    Toast.makeText(this, "Income added successfully", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Expense added successfully", Toast.LENGTH_SHORT).show()
                     finish()
                 }
                 .addOnFailureListener { e ->
-                    // Show an error message if the income couldn't be added
-                    Toast.makeText(this, "Error adding income: ${e.message}", Toast.LENGTH_SHORT).show()
+                    // Show an error message if the expense couldn't be added
+                    Toast.makeText(this, "Error adding expense: ${e.message}", Toast.LENGTH_SHORT).show()
                 }
         }
+
     }
 }

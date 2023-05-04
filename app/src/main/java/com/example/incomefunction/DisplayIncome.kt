@@ -29,7 +29,7 @@ class DisplayIncome : AppCompatActivity() {
 
     private fun loadIncome() {
         FirebaseFirestore.getInstance()
-            .collection("income")
+            .collection("incomes")
             .get()
             .addOnSuccessListener { queryDocumentSnapshots: QuerySnapshot ->
                 val dsList = queryDocumentSnapshots.documents

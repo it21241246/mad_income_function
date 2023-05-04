@@ -57,15 +57,15 @@ class IncomeAdapter(private val context: Context) : RecyclerView.Adapter<MyViewH
         }
 
         holder.deleteButton.setOnClickListener {
-            val expenseId = income.id
+            val incomeId = income.id
             val db = FirebaseFirestore.getInstance()
-            val expensesCollectionRef = db.collection("expenses")
-            val expenseDocRef = expenseId?.let { it1 -> expensesCollectionRef.document(it1) }
-            if (expenseDocRef != null) {
-                expenseDocRef.delete()
+            val incomeCollectionRef = db.collection("incomes")
+            val incomeDocRef = incomeId?.let { it1 -> incomeCollectionRef.document(it1) }
+            if (incomeDocRef != null) {
+                incomeDocRef.delete()
                     .addOnSuccessListener {
                         // Show a success message if the expense is deleted
-                        Toast.makeText(holder.itemView.context, "Expense deleted", Toast.LENGTH_SHORT)
+                        Toast.makeText(holder.itemView.context, "income deleted", Toast.LENGTH_SHORT)
                             .show()
                         incomeList.removeAt(holder.adapterPosition)
                         notifyItemRemoved(holder.adapterPosition)
@@ -75,7 +75,7 @@ class IncomeAdapter(private val context: Context) : RecyclerView.Adapter<MyViewH
                         // Show an error message if the expense couldn't be deleted
                         Toast.makeText(
                             holder.itemView.context,
-                            "Error deleting expense: ${e.message}",
+                            "Error deleting income: ${e.message}",
                             Toast.LENGTH_SHORT
                         ).show()
                     }
@@ -83,17 +83,17 @@ class IncomeAdapter(private val context: Context) : RecyclerView.Adapter<MyViewH
         }
 
         holder.editButton.setOnClickListener {
-            val expense = incomeList[holder.adapterPosition]
+            val income = incomeList[holder.adapterPosition]
             val builder = AlertDialog.Builder(holder.itemView.context)
-            builder.setTitle("Edit User Details")
+
 
             // Create the layout for the dialog
             val view = LayoutInflater.from(holder.itemView.context).inflate(R.layout.updateincome_popup, null)
             builder.setView(view)
 
             // Set the initial values for the input fields
-            view.findViewById<EditText>(R.id.textname).setText(expense.name)
-            view.findViewById<EditText>(R.id.textamount).setText(expense.amount.toString())
+            view.findViewById<EditText>(R.id.textname).setText(income.name)
+            view.findViewById<EditText>(R.id.textamount).setText(income.amount.toString())
 
 
             // Set up the save button
@@ -105,29 +105,29 @@ class IncomeAdapter(private val context: Context) : RecyclerView.Adapter<MyViewH
 
 
                 // Update the user's details in the database
-                val expenseId = income.id
+                val incomeId = income.id
                 val db = FirebaseFirestore.getInstance()
-                val expensesCollectionRef = db.collection("expenses")
-                val expenseDocRef = expenseId?.let { it1 -> expensesCollectionRef.document(it1) }
-                if (expenseDocRef != null) {
-                    expenseDocRef.update(mapOf(
+                val incomeCollectionRef = db.collection("incomes")
+                val incomeDocRef = incomeId?.let { it1 -> incomeCollectionRef.document(it1) }
+                if (incomeDocRef != null) {
+                    incomeDocRef.update(mapOf(
                         "name" to updatedName,
                         "amount" to updatedAmount,
 
                         ))
                         .addOnSuccessListener {
                             // Show a success message if the user's details are updated
-                            Toast.makeText(holder.itemView.context, "User details updated", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(holder.itemView.context, "income details updated", Toast.LENGTH_SHORT).show()
 
                             // Update the user's details in the local list and refresh the adapter
-                            expense.name = updatedName
-                            expense.amount = updatedAmount
+                            income.name = updatedName
+                            income.amount = updatedAmount
 
                             notifyItemChanged(holder.adapterPosition)
                         }
                         .addOnFailureListener { e ->
                             // Show an error message if the user's details couldn't be updated
-                            Toast.makeText(holder.itemView.context, "Error updating user details: ${e.message}", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(holder.itemView.context, "Error updating income details: ${e.message}", Toast.LENGTH_SHORT).show()
                         }
                 }
             }

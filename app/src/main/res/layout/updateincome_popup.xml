@@ -7,7 +7,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="Update Expense"
+        android:text="Update Income"
         android:background="@color/teal_700"
         android:textSize="25dp"
         android:gravity="center"
@@ -73,18 +73,6 @@
     </EditText>
 
 
-    <Button
-        android:id="@+id/btnupdate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
-        android:layout_marginTop="20dp"
-        android:gravity="center"
-        android:background="@drawable/rounded"
-        android:text="Update" />
 
 
 </LinearLayout>
